@@ -1,0 +1,32 @@
+{% extends 'layouts/base.njk' %}
+
+{% block page_title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="svw-content svw-centered">
+  <div class="svw-header">
+    <div class="svw-header-left">
+      {% if not inRoot %}
+      <a href="{{ parentPath }}" class="svw-header-nav-back bold">
+        <img src="/svg/icons/material/navigate-before.svg" alt="Back" />
+        <p>../</p>
+      </a>
+      {% endif %}
+
+      <a class="bold" href="{{ path }}/raw"><p>view raw</p></a>
+    </div>
+
+    <div class="svw-header-right">
+      <p>{{ size.toLocaleString() }} kB</p>
+      <p>{{ type }}</p>
+      <p class="bold">{{ path }}</p>
+    </div>
+  </div>
+
+  <article class="svw-markdown">
+    {{ html | safe }}
+  </article>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+@import '../variables';
+
+.svw-directory-listing a {
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  p {
+    margin: 0;
+    text-decoration: underline;
+  }
+}
+
+.svw-directory-listing a img {
+  height: $mpad;
+  margin-right: $spad;
+  width: $mpad;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.svw-directory-listing tr:nth-child(2n) {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.svw-directory-listing td {
+  p {
+    margin: 0;
+  }
+
+  &:first-child > p,
+  &:first-child > a {
+    padding-left: 16px;
+  }
+
+  &:last-child > p,
+  &:last-child > a {
+    padding-right: 16px;
+  }
+}
+
+.svw-directory-listing {
+  font-size: 15px;
+}

@@ -1,0 +1,20 @@
+{
+  "markdownIt": {
+    "plugins": [{
+      "name": "markdown-it-smartarrows"
+    }, {
+      "name": "markdown-it-anchor",
+      "config": {
+        "permalink": true,
+        "permalinkBefore": true,
+        "permalinkSymbol": "§"
+      }
+    }, {
+      "name": "markdown-it-highlightjs",
+      "config": {
+        "auto": true,
+        "code": true
+      }
+    }]
+  }
+}

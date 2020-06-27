@@ -1,0 +1,75 @@
+@use 'sass:string';
+@import './variables';
+
+html,
+body {
+  font-family: $font-body;
+  height: 100%;
+
+  margin: 0;
+  max-width: 100%;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-headers;
+}
+
+code {
+  font-family: $font-code;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.svw-centered {
+  margin: 0 auto;
+  max-width: $width;
+
+  &:not(:last-child) {
+    margin-bottom: $pad;
+  }
+}
+
+select {
+  border-radius: 0;
+  margin: 0;
+  padding: 4px 16px 4px 8px;
+}
+
+.svw-control > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.svw-control label {
+  margin-right: $spad;
+
+  p {
+    margin: 0;
+  }
+}
+
+@include sass-themify() {
+  input,
+  textarea {
+    background: sass-themify-get-color('bg-forms');
+    color: sass-themify-get-color('fg-forms');
+  }
+
+  select {
+    background: sass-themify-get-color('bg-forms') url("data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' height='63' width='117' fill='%23#{string.slice(inspect(sass-themify-get-color('fg-forms')), 2)}'><path d='M115 2c-1-2-4-2-5 0L59 53 7 2a4 4 0 0 0-5 5l54 54 2 2 3-2 54-54c2-1 2-4 0-5z'/></svg>") calc(100% - 12px) 50%/12px no-repeat;
+    color: sass-themify-get-color('fg-forms');
+  }
+
+  a,
+  a > * {
+    color: sass-themify-get-color('fg-link');
+  }
+}

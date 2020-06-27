@@ -1,0 +1,55 @@
+/* stylelint-disable selector-class-pattern */
+
+@import './variables';
+
+.dataTable-selector {
+  display: inline-block;
+  padding-right: $pad;
+}
+
+.dataTable-wrapper.no-footer .dataTable-container { // stylelint-disable-line
+  border: 0;
+}
+
+.dataTable-top { // stylelint-disable-line
+  padding: 16px 24px 8px;
+}
+
+.dataTable-bottom { // stylelint-disable-line
+  display: none;
+}
+
+.dataTable-dropdown { // stylelint-disable-line
+  font-size: 14px;
+
+  .dataTable-selector { // stylelint-disable-line
+    margin-right: 8px;
+  }
+}
+
+@include sass-themify() {
+  .dataTable-sorter {
+    &::after,
+    &::before {
+      opacity: 0.5;
+    }
+
+    &::after {
+      border-bottom-color: sass-themify-get-color('fg');
+    }
+
+    &::before {
+      border-top-color: sass-themify-get-color('fg');
+    }
+  }
+
+  .dataTable-pagination a {
+    color: sass-themify-get-color('fg-link');
+  }
+
+  .dataTable-pagination .active a,
+  .dataTable-pagination .active a:focus,
+  .dataTable-pagination .active a:hover {
+    background-color: sass-themify-get-color('bg-active');
+  }
+}

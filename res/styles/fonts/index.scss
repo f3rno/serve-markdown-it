@@ -1,0 +1,16 @@
+@import './fonts/lato';
+@import './fonts/libre_baskerville';
+@import './fonts/ibm_plex_mono';
+
+$font-body-family: 'Lato';
+$font-headers-family: 'Libre Baskerville';
+$font-code-family: 'IBM Plex Mono';
+
+// From https://gist.github.com/don1138/5761014
+$font-body-fallback: Frutiger, 'Frutiger Linotype', Univers, Calibri, 'Gill Sans', 'Gill Sans MT', 'Myriad Pro', Myriad, 'DejaVu Sans Condensed', 'Liberation Sans', 'Nimbus Sans L', Tahoma, Geneva, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-headers-fallback: Constantia, 'Lucida Bright', Lucidabright, 'Lucida Serif', Lucida, 'DejaVu Serif', 'Bitstream Vera Serif', 'Liberation Serif', Georgia, serif;
+$font-code-fallback: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier, monospace;
+
+$font-body: $font-body-family, $font-body-fallback;
+$font-headers: $font-headers-family, $font-headers-fallback;
+$font-code: $font-code-family, $font-code-fallback;

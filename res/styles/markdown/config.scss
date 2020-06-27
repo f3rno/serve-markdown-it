@@ -1,0 +1,25 @@
+@import 'sass-themify/sass-themify';
+@import '../variables';
+
+.svw-config {
+  margin: $pad auto 0 auto;
+  max-width: $width;
+
+  &.closed .svw-markdown {
+    display: none;
+  }
+}
+
+.svw-config .svw-markdown {
+  padding: 0;
+}
+
+.svw-config pre > code {
+  border: 0;
+}
+
+@include sass-themify() {
+  .svw-config.closed .svw-header {
+    background: sass-themify-get-color('bg-inactive');
+  }
+}

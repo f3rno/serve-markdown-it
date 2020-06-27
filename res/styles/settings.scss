@@ -1,0 +1,18 @@
+@import 'sass-themify/sass-themify';
+@import './variables';
+
+.svw-settings {
+  select {
+    margin: 4px 0;
+  }
+
+  p {
+    line-height: 28px;
+  }
+}
+
+@include sass-themify() {
+  .svw-settings.svw-header {
+    border-bottom-color: rgba(sass-themify-get-color('border-highlight'), 0.4);
+  }
+}

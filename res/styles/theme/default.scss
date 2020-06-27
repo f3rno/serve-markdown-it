@@ -1,0 +1,17 @@
+@import 'open-color/open-color';
+
+@function gen-light-default-theme($accent-color-dark, $accent-color-light) {
+  @return (
+    'fg': $oc-gray-9,
+    'fg-link': $accent-color-dark,
+    'fg-forms': $oc-gray-9,
+    'bg-outer': $oc-gray-9,
+    'bg-content': $oc-gray-0,
+    'bg-seperator': $oc-gray-5,
+    'bg-active': #d9d9d9,
+    'bg-inactive': $oc-gray-7,
+    'bg-header': $accent-color-dark,
+    'bg-forms': #efefef,
+    'border-highlight': $accent-color-light
+  );
+}

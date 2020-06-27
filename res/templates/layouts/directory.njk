@@ -1,0 +1,108 @@
+{% extends 'layouts/base.njk' %}
+
+{% block page_title %}
+{{ path }}
+{% endblock %}
+
+{% block content %}
+<div class="svw-content svw-centered">
+  <div class="svw-header">
+    <div class="svw-header-left">
+      {% if not inRoot %}
+      <a href="{{ parentPath }}" class="svw-header-nav-back bold">
+        <img src="/svg/icons/material/navigate-before.svg" alt="Back" />
+        <p>../</p>
+      </a>
+      {% endif %}
+    </div>
+
+    <div class="svw-header-right">
+      <p>{{ nodes.length }} items</p>
+      <p>{{ totalSize.toLocaleString() }} kB total</p>
+      <p class="bold">{{ path }}</p>
+    </div>
+  </div>
+
+  <table class="svw-directory-listing">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>User</th>
+        <th>Group</th>
+        <th>Mode</th>
+        <th>Type</th>
+        <th>Size</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for node in nodes %}
+      <tr
+        {% if node.isDirectory %}
+        class="svw-directory-item"
+        {% else %}
+        class="svw-file-item"
+        {% endif %}
+      >
+        <td>
+          {% if path == '/' %}
+          <a href="/{{ node.name }}">
+          {% else %}
+          <a href="{{ path }}/{{ node.name }}">
+          {% endif %}
+            {% if node.icon %}
+            <img src="/svg/icons/mime/{{ node.icon }}" alt="{{ node.name }}"/>
+            {% endif %}
+
+            <p>
+              {% if node.isDirectory %}
+              {{ node.name }}/
+              {% else %}
+              {{ node.name }}
+              {% endif %}
+            </p>
+          </a>
+        </td>
+
+        <td><p>{{ node.user }}</p></td>
+        <td><p>{{ node.group }}</p></td>
+        <td><p>{{ node.mode }}</p></td>
+        <td><p>{{ node.type }}</p></td>
+        <td><p>{{ (+(node.size / 1024).toFixed(2)).toLocaleString() }} kB</p></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/js/simple-datatables/simple-datatables.js"></script>
+<script>
+  $(document).ready(function () {
+    new window.simpleDatatables.DataTable("table", {
+      searchable: true,
+      sortable: true,
+
+      perPage: 25,
+      perPageSelect: [10, 25, 50, 100],
+      fixedHeight: false,
+
+      layout: {
+        top: "{select}{search}",
+        bottom: "{pager}"
+      }
+    })
+
+    $('.svw-config-toggle-button').click(function () {
+      var elm = $(".svw-config")
+
+      if (elm.hasClass('closed')) {
+        elm.removeClass('closed')
+      } else {
+        elm.addClass('closed')
+      }
+    })
+  })
+</script>
+{% endblock %}
