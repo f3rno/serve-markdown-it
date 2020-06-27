@@ -1,99 +1,144 @@
-#!/usr/bin/env node
+// eslint-why docs
+/* eslint-disable max-len */
 
-const path = require('path')
-const yArgs = require('yargs')
-const colors = require('colors')
-const { Signale } = require('signale')
-const signaleTypes = require('signale/types')
-const updateNotifier = require('update-notifier')
-const _uniq = require('lodash/uniq')
-const _values = require('lodash/values')
-const _isEmpty = require('lodash/isEmpty')
-const { getConfig, commands } = require('./lib')
-const manifest = require('./package.json')
-
-updateNotifier({ pkg: manifest }).notify()
-
-const logLevels = _uniq(_values(signaleTypes).map(({ logLevel }) => logLevel))
+const lib = require('./lib')
 
 /**
- * @todo add `.epilogue()`
+ * # sermit - `serve-markdown-it`.
+ *
+ * Description TODO.
+ *
+ * > Configurable static file server with markdown-it for parsing Markdown.
+ *
+ * @module serve-markdown-it
+ * @license MIT
+ * @example <caption>sermit help</caption>
+ * sermit [path] [options]
+ *
+ * Serve local files
+ *
+ * Commands:
+ *   sermit print-config            Log the merged configuration to the console
+ *   sermit gen-config              Generate a new configuration file
+ *   sermit render                  Render local files to static HTML
+ *   sermit serve [path] [options]  Serve local files                     [default]
+ *
+ * Options:
+ *   --log-level, -l  Log level, increase to debug
+ *          [string] [choices: 'error', 'info', 'warn', 'debug'] [default: 'error']
+ *   --path, -p       Root directory
+ *     [string] [required] [default: '/home/user/code/personal/serve-markdown-it']
+ *   --help           Show help                                           [boolean]
+ *   --version        Show version number                                 [boolean]
+ *   --port           Port number to spawn HTTP server on
+ *                                              [number] [required] [default: 8960]
+ *
+ * Examples:
+ *   sermit gen-config > .sermitrc.json  Generate basic configuration
+ *
+ * @example <caption>sermit</caption>
+ * [cli] › ★  star      read config from /.sermitrc.json
+ * [cli] › ★  star      using template default
+ * [cli] › ★  star      using md plugin markdown-it-smartarrows
+ * [cli] › ★  star      using md plugin markdown-it-anchor
+ * [cli] › ★  star      using md plugin markdown-it-highlightjs
+ * [cli] › ★  star      serving content from /home/user/code/personal/serve-markdown-it
+ * [cli] › ★  star      listening at http://localhost:8960
+ *
+ * @example <caption>sermit gen-config > .sermitrc.json</caption>
+ * {
+ *   minify: true,
+ *   excludeGitIgnore: true,
+ *   template: {
+ *     name: 'serve-markdown-it-template-default',
+ *     config: {
+ *       maxWidth: '960px',
+ *       sections: {
+ *         contentHeader: true,
+ *         settings: true,
+ *         debug: true,
+ *         content: true,
+ *         order: [
+ *           'settings',
+ *           'content',
+ *           'debug'
+ *         ]
+ *       },
+ *       explorer: {
+ *         icons: true,
+ *         columns: [
+ *           'name',
+ *           'user',
+ *           'group',
+ *           'mode',
+ *           'type',
+ *           'size'
+ *         ],
+ *         dataTable: {
+ *           searchable: true,
+ *           sortable: true,
+ *           perPage: 25,
+ *           perPageSelect: [
+ *             10,
+ *             25,
+ *             50,
+ *             100
+ *           ],
+ *           fixedHeight: false,
+ *           layout: {
+ *             top: '{select}{search}',
+ *             bottom: '{pager}'
+ *           }
+ *         }
+ *       },
+ *       headerBar: false,
+ *       settingsBar: false,
+ *       dataTable: false
+ *     }
+ *   },
+ *   markdownIt: {
+ *     typographer: true,
+ *     linkify: true,
+ *     html: true,
+ *     plugins: [
+ *       {
+ *         name: 'markdown-it-smartarrows',
+ *         init: 'after',
+ *         config: {
+ *           auto: true,
+ *           code: true
+ *         }
+ *       },
+ *       {
+ *         name: 'markdown-it-anchor',
+ *         config: {
+ *           permalink: true,
+ *           permalinkBefore: true,
+ *           permalinkSymbol: '§'
+ *         },
+ *         init: 'after'
+ *       },
+ *       {
+ *         name: 'markdown-it-highlightjs',
+ *         config: {
+ *           auto: true,
+ *           code: true
+ *         },
+ *         init: 'after'
+ *       }
+ *     ]
+ *   }
+ * }
  */
-const y = yArgs
-  .scriptName('sermit')
-  .option('log-level', {
-    describe: 'Log level, increase to debug',
-    default: 'error',
-    choices: logLevels,
-    type: 'string',
-    alias: 'l',
-    global: true
-  })
-  .option('path', {
-    describe: 'Root directory',
-    default: process.cwd(),
-    demandOption: true,
-    type: 'string',
-    alias: 'p',
-    global: true,
-    normalize: true
-  })
-  .middleware((argv) => {
-    const { 'log-level': logLevel } = argv
-    const l = new Signale({
-      logLevel,
-      scope: 'cli',
-      types: {
-        ...signaleTypes,
-        star: {
-          ...signaleTypes.star,
-          logLevel: 'error'
-        }
-      }
-    })
 
-    l.info('started [%s]', logLevel)
+/**
+ * @external serve-markdown-it-template-default
+ * @see https://github.com/f3rno/serve-markdown-it-template-default
+ */
 
-    argv.l = l
-  })
-  .middleware(async (argv) => {
-    const { _, l, path: rawPath } = argv
-    const cwd = process.cwd()
-    const basePath = rawPath[0] === '/'
-      ? rawPath
-      : path.join(cwd, rawPath)
+/**
+ * @external markdown-it
+ * @see https://github.com/markdown-it/markdown-it
+ */
 
-    const [command] = _
-    const config = await getConfig({ startPath: basePath })
-    const { state } = config
-    const { md, configPath, template } = state
-
-    if (configPath) {
-      l.star('read config from %s', colors.bgGreen.black(configPath))
-    }
-
-    if (_isEmpty(command) || command === 'serve' || command === 'render') {
-      l.star('using template %s', colors.cyan(template.name))
-
-      md.pluginNames.forEach((name) => {
-        l.star('using md plugin %s', colors.yellow(name))
-      })
-    }
-
-    // eslint-why save config on args context
-    /* eslint-disable-next-line require-atomic-updates */
-    argv.config = config
-
-    // eslint-why save config on args context
-    /* eslint-disable-next-line require-atomic-updates */
-    argv.path = basePath
-  })
-  .example('$0 gen-config > .sermitrc.json', 'Generate basic configuration')
-  .showHelpOnFail(false, 'Specify --help for available options')
-  .help()
-  .version()
-  .recommendCommands()
-
-commands.forEach((def) => { y.command(def) })
-
-y.parse()
+module.exports = lib
