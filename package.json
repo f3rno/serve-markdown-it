@@ -71,14 +71,14 @@
     "p-iteration": "^1.1.8",
     "perms": "^0.1.0",
     "resolve-global": "^1.0.0",
-    "serve-markdown-it-template-default": "file:.yalc/serve-markdown-it-template-default",
+    "serve-markdown-it-template-default": "^1.0.0",
     "signale": "^1.4.0",
     "update-notifier": "^4.1.0",
     "userid": "^1.0.0-beta.6",
     "yargs": "^15.1.0"
   },
   "devDependencies": {
-    "@f3rno/eslint-config": "file:.yalc/@f3rno/eslint-config",
+    "@f3rno/eslint-config": "^1.1.7",
     "babel-eslint": "^10.1.0",
     "chai": "^4.2.0",
     "eslint": "^7.3.1",
