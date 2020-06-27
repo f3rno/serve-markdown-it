@@ -8,23 +8,19 @@ const signaleTypes = require('signale/types')
 const updateNotifier = require('update-notifier')
 const _uniq = require('lodash/uniq')
 const _values = require('lodash/values')
-const _includes = require('lodash/includes')
+const _isEmpty = require('lodash/isEmpty')
 const { getConfig, commands } = require('./lib')
-const serveCommand = require('./lib/commands/serve')
 const manifest = require('./package.json')
 
 updateNotifier({ pkg: manifest }).notify()
 
 const logLevels = _uniq(_values(signaleTypes).map(({ logLevel }) => logLevel))
-const {
-  describe: serveDescribe,
-  builder: serveBuilder,
-  handler: serveHandler
-} = serveCommand
 
+/**
+ * @todo add `.epilogue()`
+ */
 const y = yArgs
   .scriptName('sermit')
-  .usage('$0 [command] [options]', serveDescribe, serveBuilder, serveHandler)
   .option('log-level', {
     describe: 'Log level, increase to debug',
     default: 'error',
@@ -39,7 +35,8 @@ const y = yArgs
     demandOption: true,
     type: 'string',
     alias: 'p',
-    global: true
+    global: true,
+    normalize: true
   })
   .middleware((argv) => {
     const { 'log-level': logLevel } = argv
@@ -62,22 +59,20 @@ const y = yArgs
   .middleware(async (argv) => {
     const { _, l, path: rawPath } = argv
     const cwd = process.cwd()
-    const basePath = rawPath[0] === '.'
-      ? path.join(cwd, rawPath.slice(1))
-      : _includes(rawPath, path.sep)
-        ? rawPath
-        : path.join(cwd, rawPath)
+    const basePath = rawPath[0] === '/'
+      ? rawPath
+      : path.join(cwd, rawPath)
 
     const [command] = _
-    const config = await getConfig(basePath)
+    const config = await getConfig({ startPath: basePath })
     const { state } = config
     const { md, configPath, template } = state
 
     if (configPath) {
-      l.info('read config from %s', colors.bgGreen.black(configPath))
+      l.star('read config from %s', colors.bgGreen.black(configPath))
     }
 
-    if (command === 'serve' || command === 'render') {
+    if (_isEmpty(command) || command === 'serve' || command === 'render') {
       l.star('using template %s', colors.cyan(template.name))
 
       md.pluginNames.forEach((name) => {
@@ -93,7 +88,11 @@ const y = yArgs
     /* eslint-disable-next-line require-atomic-updates */
     argv.path = basePath
   })
+  .example('$0 gen-config > .sermitrc.json', 'Generate basic configuration')
+  .showHelpOnFail(false, 'Specify --help for available options')
   .help()
+  .version()
+  .recommendCommands()
 
 commands.forEach((def) => { y.command(def) })
 
