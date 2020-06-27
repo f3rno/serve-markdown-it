@@ -15,7 +15,7 @@ const l = getLogger('cli')
 
 getConfig(basePath).then((config) => {
   const { state } = config
-  const { md, configPath } = state
+  const { md, configPath, template } = state
 
   if (configPath) {
     l.success('loaded user config from %s', colors.bgGreen.black(configPath))
@@ -26,6 +26,15 @@ getConfig(basePath).then((config) => {
   md.pluginNames.forEach((name) => {
     l.info('using md plugin %s', colors.yellow(name))
   })
+
+  l.info('using template %s', colors.cyan(template.name))
+
+  // const { state: _, ...logConfig } = config
+
+  // JSON
+  //   .stringify(logConfig, null, 2)
+  //   .split('\n')
+  //   .forEach(ln => { l.info('config: %s', ln) })
 
   const server = createServer({
     config,

@@ -2,15 +2,16 @@
   "name": "serve-markdown-it",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "TODO",
+  "description": "Configurable static file server with markdown-it for parsing Markdown.",
   "author": "Cris Mihalache <me@f3rno.com>",
   "main": "index.js",
   "engines": {
     "node": ">=11.14.0"
   },
   "files": [
-    "./index.js",
-    "./lib/**"
+    "index.js",
+    "lib/**",
+    "public/**"
   ],
   "bin": {
     "sermit": "index.js"
@@ -28,24 +29,17 @@
     "url": "https://github.com/f3rno/serve-markdown-it/issues"
   },
   "keywords": [
-    "vim",
-    "vimwiki",
-    "wiki",
+    "cli",
+    "html",
     "markdown",
     "markdown-it",
-    "nunjucks",
-    "gfm"
+    "md",
+    "utility",
+    "server"
   ],
   "scripts": {
-    "build": "npm run clean-public && npm run build-public && npm run docs",
-    "build-public": "npm run build-public-assets && npm run build-public-style",
-    "build-public-assets": "node scripts/build_assets.js",
-    "build-public-style": "node scripts/build_style.js",
-    "clean-public": "rm -rf public/*",
     "docs": "rm -rf docs/reference.md && ./node_modules/.bin/jsdoc2md -f index.js 'lib/**/*.js' > docs/reference.md",
-    "lint": "npm run lint-js && npm run lint-scss",
-    "lint-js": "./node_modules/.bin/eslint package.json '*.js' lib",
-    "lint-scss": "./node_modules/.bin/stylelint res/styles/index.scss",
+    "lint": "./node_modules/.bin/eslint package.json '*.js' lib",
     "release": "npm run update-version && git push origin master --follow-tags && npm publish",
     "serve-docs": "node index.js docs/reference.md",
     "test": "npm run lint && npm run unit",
@@ -55,15 +49,10 @@
   },
   "dependencies": {
     "bluebird": "^3.7.2",
-    "bourbon": "^7.0.0",
-    "browserify": "^16.5.1",
     "colors": "^1.4.0",
     "cosmiconfig": "^6.0.0",
     "debug": "^4.2.0",
-    "family.scss": "^1.0.8",
-    "file-icon-vectors": "^1.0.0",
     "fs-extra": "^9.0.1",
-    "highlight.js": "^10.1.1",
     "html-minifier": "^4.0.0",
     "ignore": "^5.1.8",
     "js-yaml": "^3.14.0",
@@ -75,22 +64,11 @@
     "markdown-it-anchor": "^5.3.0",
     "markdown-it-front-matter": "^0.2.1",
     "mime-types": "^2.1.27",
-    "normalize-scss": "^7.0.1",
-    "nunjucks": "^3.2.1",
-    "open-color": "^1.7.0",
     "p-iteration": "^1.1.8",
-    "perfect-scrollbar": "^1.5.0",
     "perms": "^0.1.0",
-    "pretty-checkbox": "^3.0.3",
-    "sass": "^1.26.9",
-    "sass-themify": "^2.0.0",
+    "serve-markdown-it-template-default": "file:.yalc/serve-markdown-it-template-default",
     "signale": "^1.4.0",
-    "simple-datatables": "^2.1.13",
-    "slugify": "^1.4.2",
-    "svg-icon": "^0.8.2",
-    "userid": "^1.0.0-beta.6",
-    "water.css": "kognise/water.css#master",
-    "zepto": "^1.2.0"
+    "userid": "^1.0.0-beta.6"
   },
   "devDependencies": {
     "@f3rno/eslint-config": "^1.1.5",
@@ -132,9 +110,6 @@
     "mocha": "^8.0.1",
     "nyc": "^15.1.0",
     "standard-version": "^8.0.0",
-    "stylelint": "^13.6.1",
-    "stylelint-config-rational-order": "^0.1.2",
-    "stylelint-config-sass-guidelines": "^7.0.0",
     "updates": "^10.2.15"
   },
   "husky": {
