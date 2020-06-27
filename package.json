@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "bluebird": "^3.7.2",
+    "chromafi": "^2.1.0",
     "colors": "^1.4.0",
     "cosmiconfig": "^6.0.0",
     "debug": "^4.2.0",
@@ -66,12 +67,15 @@
     "mime-types": "^2.1.27",
     "p-iteration": "^1.1.8",
     "perms": "^0.1.0",
+    "resolve-global": "^1.0.0",
     "serve-markdown-it-template-default": "file:.yalc/serve-markdown-it-template-default",
     "signale": "^1.4.0",
-    "userid": "^1.0.0-beta.6"
+    "update-notifier": "^4.1.0",
+    "userid": "^1.0.0-beta.6",
+    "yargs": "^15.1.0"
   },
   "devDependencies": {
-    "@f3rno/eslint-config": "^1.1.5",
+    "@f3rno/eslint-config": "file:.yalc/@f3rno/eslint-config",
     "babel-eslint": "^10.1.0",
     "chai": "^4.2.0",
     "eslint": "^7.3.1",
