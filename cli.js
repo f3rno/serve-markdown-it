@@ -8,7 +8,6 @@ const signaleTypes = require('signale/types')
 const updateNotifier = require('update-notifier')
 const _uniq = require('lodash/uniq')
 const _values = require('lodash/values')
-const _isEmpty = require('lodash/isEmpty')
 const getConfig = require('./lib/config')
 const commands = require('./lib/commands')
 const manifest = require('./package.json')
@@ -55,13 +54,12 @@ const y = yArgs
     argv.l = l
   })
   .middleware(async (argv) => {
-    const { _, l, path: rawPath } = argv
+    const { l, path: rawPath } = argv
     const cwd = process.cwd()
     const basePath = rawPath[0] === '/'
       ? rawPath
       : path.join(cwd, rawPath)
 
-    const [command] = _
     const config = await getConfig({ basePath })
     const { state } = config
     const { md, configPath, template } = state
@@ -70,13 +68,11 @@ const y = yArgs
       l.star('read config from %s', colors.bgGreen.black(configPath))
     }
 
-    if (_isEmpty(command) || command === 'serve' || command === 'render') {
-      l.star('using template %s', colors.cyan(template.name))
+    l.star('using template %s', colors.cyan(template.name))
 
-      md.pluginNames.forEach((name) => {
-        l.star('using md plugin %s', colors.yellow(name))
-      })
-    }
+    md.pluginNames.forEach((name) => {
+      l.star('using md plugin %s', colors.yellow(name))
+    })
 
     // eslint-why save config on args context
     /* eslint-disable-next-line require-atomic-updates */
