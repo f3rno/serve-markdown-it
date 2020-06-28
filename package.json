@@ -11,9 +11,7 @@
   "files": [
     "index.js",
     "cli.js",
-    "lib/**",
-    "public/**",
-    "docs/**"
+    "lib/**"
   ],
   "bin": {
     "sermit": "cli.js"
@@ -31,20 +29,24 @@
     "url": "https://github.com/f3rno/serve-markdown-it/issues"
   },
   "keywords": [
+    "md",
     "cli",
     "html",
+    "utility",
     "markdown",
     "markdown-it",
-    "md",
-    "utility",
+    "serve-markdown-it",
+    "sermit",
+    "sermit-template",
+    "sermit-config",
     "server"
   ],
   "scripts": {
-    "docs": "rm -rf docs/reference.md && ./node_modules/.bin/jsdoc2md -f index.js 'lib/**/*.js' > docs/reference.md",
+    "docs": "rm -rf DOCUMENTATION.md && ./node_modules/.bin/jsdoc2md -f index.js 'lib/**/*.js' > DOCUMENTATION.md",
     "gen-readme": "rm README.md && node scripts/gen_readme.js",
-    "lint": "./node_modules/.bin/eslint package.json '*.js' lib",
+    "lint": "./node_modules/.bin/eslint package.json '*.js' lib test",
     "release": "npm run update-version && git push origin master --follow-tags && npm publish",
-    "serve-docs": "node cli.js docs/reference.md",
+    "serve-docs": "node cli.js DOCUMENTATION.md",
     "test": "npm run lint && npm run unit",
     "unit": "NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --recursive",
     "update-deps": "./node_modules/.bin/updates -u -p -c",
@@ -56,8 +58,6 @@
     "chromafi": "^2.1.0",
     "colors": "^1.4.0",
     "cosmiconfig": "^6.0.0",
-    "debug": "^4.2.0",
-    "fs-extra": "^9.0.1",
     "html-minifier": "^4.0.0",
     "ignore": "^5.1.8",
     "js-yaml": "^3.14.0",
@@ -71,12 +71,12 @@
     "mime-types": "^2.1.27",
     "p-iteration": "^1.1.8",
     "perms": "^0.1.0",
-    "resolve-global": "^1.0.0",
-    "serve-markdown-it-template-default": "^1.0.2",
+    "serve-markdown-it-lib": "^1.0.3",
+    "serve-markdown-it-template-default": "^1.0.4",
     "signale": "^1.4.0",
     "update-notifier": "^4.1.0",
     "userid": "^1.0.0-beta.6",
-    "yargs": "^15.1.0"
+    "yargs": "^7.1.1"
   },
   "devDependencies": {
     "@f3rno/eslint-config": "^1.1.7",
@@ -88,7 +88,7 @@
     "eslint-plugin-classes": "^0.1.1",
     "eslint-plugin-clean-regex": "^0.4.0",
     "eslint-plugin-filenames": "^1.3.2",
-    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsdoc": "^28.5.1",
     "eslint-plugin-lodash": "^7.1.0",
     "eslint-plugin-mocha": "^7.0.1",
@@ -114,7 +114,6 @@
     "jsdoc-to-markdown": "^6.0.1",
     "markdown-it-highlightjs": "^3.1.0",
     "markdown-it-smartarrows": "^1.0.1",
-    "markserv": "^1.17.4",
     "mocha": "^8.0.1",
     "nyc": "^15.1.0",
     "standard-version": "^8.0.0",
@@ -122,7 +121,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test && yarn docs && git add docs"
+      "pre-commit": "yarn test && yarn docs && yarn gen-readme && git add README.md DOCUMENTATION.md"
     }
   }
 }
