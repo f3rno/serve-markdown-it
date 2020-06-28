@@ -1,51 +1,3 @@
-# serve-markdown-it - sermit
-
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
-
-Configurable static file server with markdown-it for parsing Markdown.
-
-> README & DOCS TODO
-
-### [Installation](#installation)
-![npm badge](https://nodei.co/npm/serve-markdown-it.png?downloads=true&downloadRank=true&stars=true)
-
-```bash
-yarn global add serve-markdown-it
-```
-
-### [Developing](#developing)
-
-```bash
-yarn gen-readme // update README.md
-yarn docs // update DOCUMENTATION.md
-yarn test // lint & mocha
-yarn update-deps // bump all deps
-```
-
-### [Release History](#release_history)
-
-See *[CHANGELOG.md](CHANGELOG.md)* for more information.
-
-### [License](#license)
-
-Distributed under the **MIT** license. See [LICENSE.md](LICENSE.md) for more information.
-
-### [Contributing](#contributing)
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
-
----
-
-## [API Reference](#api_reference)
-
-> The standalone JSDoc reference can be found in [DOCUMENTATION.md](DOCUMENTATION.md)
-
 ## Modules
 
 <dl>
@@ -419,11 +371,3 @@ Configuration data.
 | [markdownIt] | <code>object</code> | [markdown-it](https://github.com/markdown-it/markdown-it) parser   configuration options. All keys besides `plugins` are passed to   the [markdown-it](https://github.com/markdown-it/markdown-it) constructor. |
 | [markdownIt.plugins] | [<code>Array.&lt;PluginDefinition&gt;</code>](#PluginDefinition) | array of plugins for   [markdown-it](https://github.com/markdown-it/markdown-it) to be loaded. |
 
-
-
-<!-- Markdown link & img dfn's -->
-[npm-image]: https://img.shields.io/npm/v/serve-markdown-it.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/serve-markdown-it
-[npm-downloads]: https://img.shields.io/npm/dm/serve-markdown-it.svg?style=flat-square
-[travis-image]: https://img.shields.io/travis/f3rno/serve-markdown-it/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/f3rno/serve-markdown-it
