@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "Configurable static file server with markdown-it for parsing Markdown.",
   "author": "Cris Mihalache <me@f3rno.com>",
-  "main": "index.js",
+  "main": "./cli.js",
   "engines": {
     "node": ">=11.14.0"
   },
@@ -68,11 +68,15 @@
     "markdown-it": "^11.0.0",
     "markdown-it-anchor": "^5.3.0",
     "markdown-it-front-matter": "^0.2.1",
+    "markdown-it-highlightjs": "^3.1.0",
+    "markdown-it-smartarrows": "^1.0.1",
+    "markdown-it-wikilinks": "^1.0.1",
     "mime-types": "^2.1.27",
     "p-iteration": "^1.1.8",
     "perms": "^0.1.0",
-    "serve-markdown-it-lib": "^1.0.4",
-    "serve-markdown-it-template-default": "^1.0.5",
+    "serve-markdown-it-lib": "file:.yalc/serve-markdown-it-lib",
+    "serve-markdown-it-template-blank": "^1.0.2",
+    "serve-markdown-it-template-default": "file:.yalc/serve-markdown-it-template-default",
     "signale": "^1.4.0",
     "update-notifier": "^4.1.0",
     "userid": "^1.0.0-beta.6",
@@ -112,12 +116,21 @@
     "eslint-plugin-why": "^1.2.0",
     "husky": "^4.2.5",
     "jsdoc-to-markdown": "^6.0.1",
-    "markdown-it-highlightjs": "^3.1.0",
-    "markdown-it-smartarrows": "^1.0.1",
     "mocha": "^8.0.1",
     "nyc": "^15.1.0",
     "standard-version": "^8.0.0",
     "updates": "^10.2.15"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./cli": "./cli.js",
+    "./lib": "./lib/index.js",
+    "./render": "./lib/render/index.js",
+    "./util": "./lib/util/index.js",
+    "./config": "./lib/config/index.js",
+    "./markdown": "./lib/markdown/index.js",
+    "./types": "./lib/types/index.js",
+    "./package.json": "./package.json"
   },
   "husky": {
     "hooks": {

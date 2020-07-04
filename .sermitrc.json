@@ -2,13 +2,17 @@
   "template": {
     "name": "serve-markdown-it-template-default",
     "config": {
-      "headerBar": false,
-      "settingsBar": false,
+      "maxWidth": "960xp",
+      "headerBar": true,
+      "settingsBar": true,
       "dataTable": false
     }
   },
   "markdownIt": {
     "plugins": [
+      {
+        "name": "markdown-it-wikilinks"
+      },
       {
         "name": "markdown-it-smartarrows"
       },
