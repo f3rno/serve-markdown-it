@@ -1,6 +1,6 @@
 {
   "name": "serve-markdown-it",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "description": "Configurable static file server with markdown-it for parsing Markdown.",
   "author": "Cris Mihalache <me@f3rno.com>",

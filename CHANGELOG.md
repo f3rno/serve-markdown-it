@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/f3rno/serve-markdown-it/compare/v1.0.4...v1.0.5) (2020-07-04)
+
+
+### Bug Fixes
+
+* prefer greatest ver in update-deps ([c461518](https://github.com/f3rno/serve-markdown-it/commit/c461518511a6300b1fb1a3c2581d543149c6f7da))
+* rm vestigial func ([665b494](https://github.com/f3rno/serve-markdown-it/commit/665b49471fdc2f454033640b0c69bd44bbb71d6c))
+
 ### [1.0.4](https://github.com/f3rno/serve-markdown-it/compare/v1.0.3...v1.0.4) (2020-06-28)
 
 
