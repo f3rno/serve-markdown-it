@@ -96,7 +96,7 @@ const lib = require('./lib')
  *       dataTable: false
  *     }
  *   },
- *   markdownIt: {
+ *   md: {
  *     typographer: true,
  *     linkify: true,
  *     html: true,
