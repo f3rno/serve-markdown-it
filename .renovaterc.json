@@ -1,0 +1,16 @@
+{
+  "extends": ["config:base"],
+  "assignees": ["f3rno"],
+  "reviewers": ["f3rno"],
+  "labels": ["dependencies"],
+
+  "automerge": false,
+  "enabled": true,
+
+  "ignoreUnstable": false,
+  "respectLatest": false,
+  "lockFileMaintenance": { "enabled": true },
+  "travis": { "enabled": true },
+
+  "schedule": "on monday"
+}
