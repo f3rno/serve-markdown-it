@@ -13,9 +13,6 @@
 ## Functions
 
 <dl>
-<dt><a href="#prepareConfig">prepareConfig([data])</a> ⇒ <code>Promise</code></dt>
-<dd><p>Merges the provided user config with the default configuration.</p>
-</dd>
 <dt><a href="#getConfig">getConfig(params)</a> ⇒ <code>Promise</code></dt>
 <dd><p>Resolve the runtime configuration, loading the first user config file found.
 Searches directories up the path for any of the following files:</p>
@@ -180,22 +177,6 @@ Examples:
     ]
   }
 }
-```
-<a name="prepareConfig"></a>
-
-## prepareConfig([data]) ⇒ <code>Promise</code>
-Merges the provided user config with the default configuration.
-
-**Kind**: global function  
-**Returns**: <code>Promise</code> - p - resolves to final merged config.  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| [data] | <code>Array</code> | <code>[]</code> | data, with [config, path]. |
-
-**Example**  
-```js
-// TODO
 ```
 <a name="getConfig"></a>
 
