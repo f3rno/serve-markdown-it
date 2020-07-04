@@ -141,4 +141,19 @@ const lib = require('./lib')
  * @see https://github.com/markdown-it/markdown-it
  */
 
+/**
+ * @external cosmiconfig
+ * @see https://github.com/davidtheclark/cosmiconfig
+ */
+
+/**
+ * @external markdown-it-highlightjs
+ * @see https://github.com/valeriangalliat/markdown-it-highlightjs
+ */
+
+/**
+ * @external highlightjs
+ * @see https://github.com/highlightjs/highlight.js
+ */
+
 module.exports = lib
