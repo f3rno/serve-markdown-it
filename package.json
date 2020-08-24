@@ -63,7 +63,7 @@
     "js-yaml": "^3.14.0",
     "koa": "^2.13.0",
     "koa-404-handler": "^0.0.2",
-    "koa-better-error-handler": "^4.0.3",
+    "koa-better-error-handler": "^6.0.0",
     "lodash": "^4.17.15",
     "markdown-it": "^11.0.0",
     "markdown-it-anchor": "^5.3.0",
