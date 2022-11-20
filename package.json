@@ -60,7 +60,7 @@
     "cosmiconfig": "^6.0.0",
     "html-minifier": "^4.0.0",
     "ignore": "^5.1.8",
-    "js-yaml": "^3.14.0",
+    "js-yaml": "^4.0.0",
     "koa": "^2.13.0",
     "koa-404-handler": "^0.0.2",
     "koa-better-error-handler": "^4.0.3",
