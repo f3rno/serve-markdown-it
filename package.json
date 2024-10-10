@@ -84,7 +84,7 @@
   },
   "devDependencies": {
     "@f3rno/eslint-config": "^1.1.8",
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.11.0",
     "chai": "^4.2.0",
     "eslint": "^7.4.0",
     "eslint-config-standard": "^14.1.1",
