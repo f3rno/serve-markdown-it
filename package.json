@@ -101,7 +101,7 @@
     "eslint-plugin-no-module-mutate": "^1.0.0",
     "eslint-plugin-no-smart-quotes": "^1.1.0",
     "eslint-plugin-no-useless-assign": "^1.0.3",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-n": "^14.0.0",
     "eslint-plugin-package-json": "^0.1.4",
     "eslint-plugin-private-props": "^0.3.0",
     "eslint-plugin-promise": "^4.2.1",
